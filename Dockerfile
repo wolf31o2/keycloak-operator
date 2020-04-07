@@ -1,6 +1,4 @@
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.1 AS build-env
-
-RUN microdnf install -y git make golang
+FROM golang as build-env
 
 ADD ./ /src
 RUN cd /src && make code/compile

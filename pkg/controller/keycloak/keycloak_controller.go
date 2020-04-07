@@ -238,7 +238,7 @@ func (r *ReconcileKeycloak) ManageSuccess(instance *v1alpha1.Keycloak, currentSt
 	if currentState.KeycloakRoute != nil && currentState.KeycloakRoute.Spec.Host != "" {
 		instance.Status.InternalURL = fmt.Sprintf("https://%v", currentState.KeycloakRoute.Spec.Host)
 	} else if currentState.KeycloakService != nil && currentState.KeycloakService.Spec.ClusterIP != "" {
-		instance.Status.InternalURL = fmt.Sprintf("https://%v.%v.svc:%v",
+		instance.Status.InternalURL = fmt.Sprintf("http://%v.%v.svc:%v",
 			currentState.KeycloakService.Name,
 			currentState.KeycloakService.Namespace,
 			model.KeycloakServicePort)
