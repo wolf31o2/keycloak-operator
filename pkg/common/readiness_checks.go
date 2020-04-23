@@ -29,14 +29,14 @@ func IsRouteReady(route *v1.Route) bool {
 }
 
 func IsStatefulSetReady(statefulSet *v12.StatefulSet) (bool, error) {
+	// HACK: return true, nil
+	return true, nil
 	if statefulSet == nil {
 		return false, nil
 	}
 	// Check the correct number of replicas match and are ready
 	numOfReplicasMatch := *statefulSet.Spec.Replicas == statefulSet.Status.Replicas
-	// HACK: force allReplicasReady to true
-	// allReplicasReady := statefulSet.Status.Replicas == statefulSet.Status.ReadyReplicas
-        allReplicasReady := true
+	allReplicasReady := statefulSet.Status.Replicas == statefulSet.Status.ReadyReplicas
 	revisionsMatch := statefulSet.Status.CurrentRevision == statefulSet.Status.UpdateRevision
 
 	return numOfReplicasMatch && allReplicasReady && revisionsMatch, nil
