@@ -82,10 +82,9 @@ func add(mgr manager.Manager, r reconcile.Reconciler, autodetectChannel chan sch
 		return err
 	}
 
-	// HACK: comment this out so we don't watch the resource, at all
-	// if err := common.WatchSecondaryResource(c, ControllerName, common.StatefulSetKind, &appsv1.StatefulSet{}, &kc.Keycloak{}); err != nil {
-	// 	return err
-	// }
+	if err := common.WatchSecondaryResource(c, ControllerName, common.StatefulSetKind, &appsv1.StatefulSet{}, &kc.Keycloak{}); err != nil {
+		return err
+	}
 
 	if err := common.WatchSecondaryResource(c, ControllerName, common.ServiceKind, &corev1.Service{}, &kc.Keycloak{}); err != nil {
 		return err
