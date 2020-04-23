@@ -188,7 +188,9 @@ func KeycloakDeployment(cr *v1alpha1.Keycloak, dbSecret *v1.Secret) *v13.Statefu
 
 func KeycloakDeploymentSelector(cr *v1alpha1.Keycloak) client.ObjectKey {
 	return client.ObjectKey{
-		Name:      KeycloakDeploymentName,
+		// HACK: point this at our Keycloak, not the one created by the operator
+		// Name:      KeycloakDeploymentName,
+		Name:      "keycloak",
 		Namespace: cr.Namespace,
 	}
 }

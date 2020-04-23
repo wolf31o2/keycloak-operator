@@ -17,7 +17,9 @@ const (
 	RHSSOImage                           = "registry.access.redhat.com/redhat-sso-7/sso73-openshift:1.0-15"
 	BackupImage                          = "quay.io/integreatly/backup-container:1.0.10"
 	KeycloakDiscoveryServiceName         = ApplicationName + "-discovery"
-	KeycloakDeploymentName               = ApplicationName
+        // HACK: change name to be unique
+	// KeycloakDeploymentName               = ApplicationName
+	KeycloakDeploymentName               = "keycloak-unused"
 	KeycloakDeploymentComponent          = "keycloak"
 	PostgresqlBackupComponent            = "database-backup"
 	PostgresqlDatabase                   = "root"

@@ -19,8 +19,11 @@ func KeycloakDiscoveryService(cr *v1alpha1.Keycloak) *v1.Service {
 		},
 		Spec: v1.ServiceSpec{
 			Selector: map[string]string{
-				"app":       ApplicationName,
-				"component": KeycloakDeploymentComponent,
+				// HACK: comment default selector labels and use our own
+				// "app":       ApplicationName,
+				// "component": KeycloakDeploymentComponent,
+				"service":           ApplicationName,
+				"service_component": KeycloakDeploymentComponent,
 			},
 			Ports: []v1.ServicePort{
 				{
